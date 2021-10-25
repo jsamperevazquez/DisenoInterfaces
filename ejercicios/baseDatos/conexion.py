@@ -43,7 +43,7 @@ try:
 
     # SQL INJECTION
     dni = "36171305x"
-    sqlInject = "'or '1' = '1"
+    sqlInject = "'or'1' = '1"
     cursor.execute(f"SELECT * FROM usuarios WHERE  dni ='{dni}' + '{sqlInject}' ")
 
 
