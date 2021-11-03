@@ -4,5 +4,7 @@ from gi.repository import Gtk
 
 ventana = Gtk.Window()
 ventana.show()
-ventana.connect("destroy", Gtk.main_quit)
+ventana.connect("destroy",Gtk.main_quit)
 Gtk.main()
+
+
