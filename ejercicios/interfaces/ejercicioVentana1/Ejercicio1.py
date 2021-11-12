@@ -28,35 +28,32 @@ class Aplication(Gtk.Window):
         self.caja.pack_start(self.boton1, True, True, 30)
         self.caja.pack_start(self.boton2, True, True, 30)
         self.caja.pack_start(self.boton3, True, True, 30)
-        self.boton1.connect("clicked", self.on_botona_clicked)
-        self.boton2.connect("clicked", self.on_botonr_clicked)
-        self.boton3.connect("clicked", self.on_botonv_clicked)
+        self.boton1.connect("clicked", self.on_boton_clicked, "azul")
+        self.boton2.connect("clicked", self.on_boton_clicked, "rojo")
+        self.boton3.connect("clicked", self.on_boton_clicked, "verde")
 
         self.add(self.caja)
         self.show_all()
         self.connect("destroy", Gtk.main_quit)
 
     # Métodos para los botones
-    def on_botona_clicked(self, boton):
-        provider = Gtk.CssProvider() # Proveedor de css para estilo
-        css = """#color_entry { background-image: linear-gradient(blue); }""" # css a mi entry
-        provider.load_from_data((css.encode())) # cargo css
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
-                                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-    def on_botonr_clicked(self, boton):
-        provider = Gtk.CssProvider()
-        css = """#color_entry { background-image: linear-gradient(red); }"""
-        provider.load_from_data((css.encode()))
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
-                                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
-
-    def on_botonv_clicked(self, boton):
-        provider = Gtk.CssProvider()
-        css = """#color_entry { background-image: linear-gradient(green); }"""
-        provider.load_from_data((css.encode()))
-        Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
-                                                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+    def on_boton_clicked(self, boton, color):
+        provider = Gtk.CssProvider()  # Proveedor de css para estilo
+        if color == "azul":
+            css = """#color_entry { background-image: linear-gradient(blue); }"""  # css a mi entry
+            provider.load_from_data((css.encode()))  # cargo css
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
+                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        elif color == "rojo":
+            css = """#color_entry { background-image: linear-gradient(red); }"""
+            provider.load_from_data((css.encode()))
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
+                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+        elif color == "verde":
+            css = """#color_entry { background-image: linear-gradient(green); }"""
+            provider.load_from_data((css.encode()))
+            Gtk.StyleContext.add_provider_for_screen(Gdk.Screen.get_default(), provider,
+                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
 
 
 if __name__ == "__main__":
