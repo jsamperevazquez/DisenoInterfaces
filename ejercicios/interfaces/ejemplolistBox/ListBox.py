@@ -38,7 +38,7 @@ class Aplicacion(Gtk.Window):
         self.cajaV.pack_start(self.etiqueta2, True, True, 0)
 
         self.conmutador = Gtk.Switch()
-        self.conmutador.props.valign = Gtk.Align.CENTER
+        self.conmutador.p
         self.cajaH.pack_start(self.conmutador, True, True, 0)
 
         self.fila2 = Gtk.ListBoxRow()
