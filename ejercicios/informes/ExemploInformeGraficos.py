@@ -1,12 +1,11 @@
-from reportlab.platypus import SimpleDocTemplate
+from reportlab.platypus import SimpleDocTemplate, Spacer
+from reportlab.graphics.charts.piecharts import Pie
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 from reportlab.graphics.charts.textlabels import Label
+from reportlab.graphics.charts.legends import Legend
 from reportlab.graphics.shapes import Drawing
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
-from reportlab.graphics.charts.piecharts import Pie
-from reportlab.platypus import Spacer
-from reportlab.graphics.charts.legends import Legend
 
 guion = []
 
@@ -51,64 +50,56 @@ bg.bars[1].strokeColor = colors.yellow
 bg.bars[0].strokeColor = colors.green
 d.add(bg)
 guion.append(d)
+guion.append(Spacer(0, 15))
 
-guion.append(Spacer(0, 30))
-
-# Creamos area de dibujo
-d2 = Drawing(300, 200)
-
+d = Drawing(300, 200)
 tarta = Pie()
-tarta.data = [3, 12, 15, 50, 30]
-tarta.labels = ["No Presentados", "Suspensos", "Aprobados", "Notables", "Sobresalientes"]
+tarta.data = [3, 12, 20, 50, 30]
+tarta.labels = ['Non Prensetados', 'Suspensos', 'Aprobados', 'Notables', 'Sobresalientes']
 tarta.x = 65
 tarta.y = 15
 tarta.width = 180
 tarta.height = 180
-
-# Ancho de la linea de contorno de porción
 tarta.slices.strokeWidth = 0.5
-# Resaltamos la porción 3
-tarta.slices[2].popout = 10  # Separa la porción
+tarta.slices[2].popout = 10
 tarta.slices[3].strokeWidth = 2
-tarta.slices[3].strokeDashArray = [2, 2]
+tarta.slices[3].strokeDashArray = [5, 2]
+tarta.slices[3].labelRadius = 1.75
 tarta.slices[3].fontColor = colors.red
-
-# Ponemos lineas a etiquetas
 tarta.sideLabels = 1
 
-d2.add(tarta)
-leyenda = Legend()
-leyenda.x = 370
-leyenda.y = 0
-leyenda.dx = 8
-leyenda.dy = 8
-leyenda.fontName = "Helvetica"
-leyenda.fontSize = 7
-leyenda.boxAnchor = "n"
-leyenda.columnMaximum = 10
-leyenda.strokeColor = 1
-leyenda.strokeColor = colors.black
-leyenda.autoXPadding = 5
-leyenda.yGap = 0
-leyenda.dxTextSpace = 5
-leyenda.alignment = "right"
-leyenda.dividerLines = 1 | 2 | 4
-leyenda.dividerOffsY = 4.5
-leyenda.subCols.rpad = 30
+d.add(tarta)
+
+lenda = Legend()
+lenda.x = 370
+lenda.y = 0
+lenda.dx = 8
+lenda.dy = 8
+lenda.fontName = 'Helvetica'
+lenda.fontSize = 7
+lenda.boxAnchor = 'n'
+lenda.columnMaximum = 10
+lenda.strokeWidth = 1
+lenda.strokeColor = colors.black
+lenda.autoXPadding = 5
+lenda.yGap = 0
+lenda.dxTextSpace = 5
+lenda.alignment = 'right'
+lenda.dividerLines = 2 | 3 | 4
+lenda.dividerOffsY = 4.5
+lenda.subCols.rpad = 30
+lenda.deltax = 75
+lenda.deltay = 10
 
 colores = [colors.pink, colors.red, colors.green, colors.blue, colors.yellow]
-
 for i, color in enumerate(colores):
-    tarta.slices[i].fillcolor = color
+    tarta.slices[i].fillColor = color
 
-leyenda.colorNamePairs = [(tarta.slices[i].fillcolor,
-                           (tarta.labels[i][0:20], "%0.2f" % tarta.data[i]))
-                            for i in range(len(tarta.data))]
+lenda.colorNamePairs = [(tarta.slices[i].fillColor, (tarta.labels[i][0:20], '%0.2f' % tarta.data[i])
+                         ) for i in range(len(tarta.data))]
 
-d2.add(leyenda)
-guion.append(d2)
-
-guion.append(Spacer(0, 30))
+d.add(lenda)
+guion.append(d)
 
 doc = SimpleDocTemplate("informeGraficos.pdf", pagesize=A4)
 doc.build(guion)
