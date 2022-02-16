@@ -29,7 +29,8 @@ Tambien se puede usar:
 - Diferente
 
 
-.. csv-table::
+.. csv-table:: 
+
    :header: "Uno", "Dos", "Tres"
 
    "Fila uno", "Fila dos", "Fila tres"
