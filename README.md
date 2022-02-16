@@ -30,8 +30,6 @@ Tambien se puede usar:
 
 
 .. csv-table:: 
-
    :header: "Uno", "Dos", "Tres"
-
    "Fila uno", "Fila dos", "Fila tres"
    "Fila uno", "Fila dos", "Fila tres"
