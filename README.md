@@ -28,8 +28,7 @@ Tambien se puede usar:
 - Metodo
 - Diferente
 
-tabla
-++++++
+
 .. csv-table::
    :header: "Uno", "Dos", "Tres"
 
