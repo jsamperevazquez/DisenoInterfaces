@@ -32,5 +32,18 @@ tabla
    "Fila uno", "Fila dos", "Fila tres"
    "Fila uno", "Fila dos", "Fila tres"
 
+.. note:: Esta es una caja de **nota**
+.. seealso:: Esta es una nota de *ver*
+.. warning:: Atención cuidado
+.. topic:: Esto es mi tema
+    Unas lineas acerca del tema que
+    quiero resaltar
+
+
+.. sidebar:: Titulo de la barra
+    :subtitle: Subtitulo opcional
+    Texto que acompaña a este recurso
+    que nos permite resaltar texto
+    dentro de pagina web
 
 
